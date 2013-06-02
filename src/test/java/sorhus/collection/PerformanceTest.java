@@ -3,7 +3,7 @@ package sorhus.collection;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import java.util.*;
+import java.util.UUID;
 
 /**
  * @author Anton Sorhus <anton.sorhus@gmail.com>
@@ -33,7 +33,7 @@ public class PerformanceTest {
         System.out.println("added elements to utilMap in " + (System.currentTimeMillis()-time) + "ms");
 
         time = System.currentTimeMillis();
-        se.sorhus.collection.Map<UUID, UUID> myMap = new se.sorhus.collection.HashMap<UUID, UUID>();
+        sorhus.collection.Map<UUID, UUID> myMap = new sorhus.collection.HashMap<UUID, UUID>();
         for(UUID uuid : uuids)
             myMap.put(uuid, uuid);
         System.out.println("added elements to myMap in " + (System.currentTimeMillis()-time) + "ms");
@@ -47,7 +47,7 @@ public class PerformanceTest {
         System.out.println("added elements to utilSet in " + (System.currentTimeMillis()-time) + "ms");
 
         time = System.currentTimeMillis();
-        se.sorhus.collection.Set<UUID> mySet = new se.sorhus.collection.HashSet<UUID>();
+        sorhus.collection.Set<UUID> mySet = new sorhus.collection.HashSet<UUID>();
         for(UUID uuid : uuids)
             mySet.add(uuid);
         System.out.println("added elements to mySet in " + (System.currentTimeMillis()-time) + "ms");
@@ -61,7 +61,7 @@ public class PerformanceTest {
         System.out.println("added elements to utilList in " + (System.currentTimeMillis()-time) + "ms");
 
         time = System.currentTimeMillis();
-        se.sorhus.collection.List<UUID> myList = new se.sorhus.collection.LinkedList<UUID>();
+        sorhus.collection.List<UUID> myList = new sorhus.collection.LinkedList<UUID>();
         for(UUID uuid : uuids)
             myList.add(uuid);
         System.out.println("added elements to myList in " + (System.currentTimeMillis()-time) + "ms");
@@ -79,7 +79,7 @@ public class PerformanceTest {
         System.out.println("added elements to utilMap in " + (System.currentTimeMillis()-time) + "ms");
 
         time = System.currentTimeMillis();
-        myMap = new se.sorhus.collection.HashMap<UUID, UUID>(elements, 1.0);
+        myMap = new sorhus.collection.HashMap<UUID, UUID>(elements, 1.0);
         for(UUID uuid : uuids)
             myMap.put(uuid, uuid);
         System.out.println("added elements to myMap in " + (System.currentTimeMillis()-time) + "ms");
@@ -93,7 +93,7 @@ public class PerformanceTest {
         System.out.println("added elements to utilSet in " + (System.currentTimeMillis()-time) + "ms");
 
         time = System.currentTimeMillis();
-        mySet = new se.sorhus.collection.HashSet<UUID>(elements);
+        mySet = new sorhus.collection.HashSet<UUID>(elements);
         for(UUID uuid : uuids)
             mySet.add(uuid);
         System.out.println("added elements to mySet in " + (System.currentTimeMillis()-time) + "ms");

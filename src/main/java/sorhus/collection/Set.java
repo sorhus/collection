@@ -1,11 +1,9 @@
 package sorhus.collection;
 
-import java.lang.*;
-
 /**
  * @author Anton Sorhus <anton.sorhus@gmail.com>
  */
-public interface Set<E> extends java.lang.Iterable<E> {
+public interface Set<E> extends Iterable<E> {
 
     Set<E> add(E elem);
     boolean contains(E elem);
