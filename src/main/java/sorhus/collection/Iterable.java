@@ -1,4 +1,4 @@
-package se.sorhus.collection;
+package sorhus.collection;
 
 /**
  * @author Anton Sorhus <anton.sorhus@gmail.com>

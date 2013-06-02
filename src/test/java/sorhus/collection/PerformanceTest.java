@@ -1,4 +1,4 @@
-package se.sorhus.collection;
+package sorhus.collection;
 
 import org.junit.Ignore;
 import org.junit.Test;

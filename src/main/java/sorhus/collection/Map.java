@@ -1,9 +1,9 @@
-package se.sorhus.collection;
+package sorhus.collection;
 
 /**
  * @author Anton Sorhus <anton.sorhus@gmail.com>
  */
-public interface Map<K,V> extends Iterable<K> {
+public interface Map<K,V> extends java.lang.Iterable<K> {
 
     V get(K key);
     boolean containsKey(K key);
