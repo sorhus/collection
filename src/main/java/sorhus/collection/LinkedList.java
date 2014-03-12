@@ -13,10 +13,12 @@ public class LinkedList<E> implements List<E> {
     public LinkedList<E> add(E elem) {
         if(elem == null)
             throw new IllegalArgumentException();
-        LinkedList<E> newNext = new LinkedList<E>();
-        newNext.data = data;
-        newNext.next = next;
-        next = newNext;
+        if(size() > 0) {
+            LinkedList<E> newNext = new LinkedList<E>();
+            newNext.data = data;
+            newNext.next = next;
+            next = newNext;
+        }
         data = elem;
         size++;
         return this;
@@ -24,20 +26,26 @@ public class LinkedList<E> implements List<E> {
 
     @Override
     public boolean remove(E elem) {
-        boolean result;
-        if (data == null) {
-            result = false;
-        } else if(data.equals(elem)) {
-            data = next.data;
-            next = next.next;
+        if(elem == null) {
+            return false;
+        }
+        if(elem.equals(data)) {
+            if(next != null) {
+                data = next.data;
+                next = next.next;
+            } else {
+                data = null;
+            }
             size--;
-            result = true;
-        } else {
-            result = next.remove(elem);
+            return true;
+        } else if(next != null) {
+            boolean result = next.remove(elem);
             if(result)
                 size--;
+            return result;
+        } else {
+            return false;
         }
-        return result;
     }
 
     @Override
@@ -51,6 +59,22 @@ public class LinkedList<E> implements List<E> {
         next = null;
         size = 0;
     }
+
+    @Override
+    public List<E> reverse() {
+        int tmp = size;
+        size = 0;
+        LinkedList<E> reversed = reverse(null);
+        reversed.size = tmp;
+        return reversed;
+    }
+
+    private LinkedList<E> reverse(LinkedList<E> previous) {
+        LinkedList<E> tmp = next;
+        next = previous;
+        return tmp == null ? this : tmp.reverse(this);
+    }
+
 
     @Override
     public String toString() {
@@ -99,9 +123,15 @@ public class LinkedList<E> implements List<E> {
         @Override
         public E next() {
             E result = current;
-            current = next.data;
-            next = next.next;
+            if(next != null) {
+                current = next.data;
+                next = next.next;
+            } else {
+                current = null;
+            }
             return result;
         }
     }
+
+
 }

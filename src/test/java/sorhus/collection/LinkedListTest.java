@@ -49,4 +49,15 @@ public class LinkedListTest {
         instance.clear();
         assertThat(instance.size(), is(0));
     }
+
+    @Test
+    public void testReverse() {
+        LinkedList<String> instance = new LinkedList<String>();
+        instance.add("1").add("2").add("3");
+        List<String> expected = new LinkedList<String>();
+        expected.add("3").add("2").add("1");
+        List<String> result = instance.reverse();
+        assertThat(result, is(expected));
+    }
+
 }

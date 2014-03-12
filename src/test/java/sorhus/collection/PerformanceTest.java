@@ -8,7 +8,7 @@ import java.util.UUID;
 /**
  * @author Anton Sorhus <anton.sorhus@gmail.com>
  */
-@Ignore
+//@Ignore
 public class PerformanceTest {
 
 

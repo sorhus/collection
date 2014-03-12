@@ -5,8 +5,9 @@ package sorhus.collection;
  */
 public interface List<E> extends Iterable<E> {
 
-    LinkedList<E> add(E elem);
+    List<E> add(E elem);
     boolean remove(E elem);
     int size();
     void clear();
+    List<E>  reverse();
 }
