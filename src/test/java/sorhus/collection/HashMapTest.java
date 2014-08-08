@@ -13,7 +13,7 @@ public class HashMapTest {
 
     @Test
     public void testPutGet() {
-        HashMap<String, String> instance = new HashMap<String, String>();
+        HashMap<String, String> instance = new HashMap<>();
         instance.put("key","value");
         assertThat(instance.size(), is(1));
         assertThat(instance.get("key"), is("value"));
@@ -21,7 +21,7 @@ public class HashMapTest {
 
     @Test
     public void testPutContainsKey() {
-        HashMap<String, String> instance = new HashMap<String, String>();
+        HashMap<String, String> instance = new HashMap<>();
         assertThat(instance.containsKey("key"), is(false));
         instance.put("key","value");
         assertThat(instance.containsKey("key"), is(true));
@@ -29,16 +29,16 @@ public class HashMapTest {
 
     @Test
     public void testPutKeySet() {
-        HashMap<String, String> instance = new HashMap<String, String>();
+        HashMap<String, String> instance = new HashMap<>();
         instance.put("key1","value").put("key2", "value");
-        Set<String> expected = new HashSet<String>();
+        Set<String> expected = new HashSet<>();
         expected.add("key1").add("key2");
         assertThat(instance.keySet(), is(expected));
     }
 
     @Test
     public void testPutRemove() {
-        HashMap<String, String> instance = new HashMap<String, String>();
+        HashMap<String, String> instance = new HashMap<>();
         instance.put("key","value").remove("key");
         assertThat(instance.size(), is(0));
         assertNull(instance.get("key"));
@@ -46,7 +46,7 @@ public class HashMapTest {
 
     @Test
     public void testInsertSameKey() {
-        HashMap<String, String> instance = new HashMap<String, String>();
+        HashMap<String, String> instance = new HashMap<>();
         instance.put("key","value1");
         assertThat(instance.size(), is(1));
         assertThat(instance.get("key"), is("value1"));
@@ -57,7 +57,7 @@ public class HashMapTest {
 
     @Test
     public void testIncreaseCapacity() {
-        HashMap<String, String> instance = new HashMap<String, String>(2, 0.75);
+        HashMap<String, String> instance = new HashMap<>(2, 0.75);
         instance.put("key1","value1");
         assertThat(instance.size(), is(1));
         assertThat(instance.get("key1"), is("value1"));
@@ -74,7 +74,7 @@ public class HashMapTest {
 
     @Test
     public void testClear() {
-        HashMap<String, String> instance = new HashMap<String, String>(2, 0.75);
+        HashMap<String, String> instance = new HashMap<>(2, 0.75);
         instance.put("key","value");
         assertThat(instance.size(), is(1));
         assertThat(instance.get("key"), is("value"));
@@ -85,21 +85,21 @@ public class HashMapTest {
 
     @Test
     public void testEquals() {
-        HashMap<String, String> instance1 = new HashMap<String, String>();
+        HashMap<String, String> instance1 = new HashMap<>();
         instance1.put("key1","value").put("key2", "value");
-        HashMap<String, String> instance2 = new HashMap<String, String>();
+        HashMap<String, String> instance2 = new HashMap<>();
         instance2.put("key1","value").put("key2", "value");
         assertThat(instance1.equals(instance2), is(true));
     }
 
     @Test
     public void testIterator() {
-        HashMap<String, String> instance = new HashMap<String, String>();
+        HashMap<String, String> instance = new HashMap<>();
         instance.put("key1","").put("key2","").put("key3","").put("key4", "");
-        Set<String> expected = new HashSet<String>();
+        Set<String> expected = new HashSet<>();
         expected.add("key1").add("key2").add("key3").add("key4");
         Iterator<String> iterator = instance.iterator();
-        Set<String> result = new HashSet<String>();
+        Set<String> result = new HashSet<>();
         while (iterator.hasNext())
             result.add(iterator.next());
         assertThat(result, is(expected));
@@ -108,7 +108,7 @@ public class HashMapTest {
 
    @Test
     public void testToString() {
-       HashMap<String, String> instance = new HashMap<String, String>();
+       HashMap<String, String> instance = new HashMap<>();
        instance.put("key1","v").put("key2","v").put("key3","v");
        System.out.println(instance.toString());
    }
