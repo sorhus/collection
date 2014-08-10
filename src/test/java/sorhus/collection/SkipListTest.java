@@ -25,9 +25,9 @@ public class SkipListTest {
 
     @Test
     public void testLarge() throws Exception {
-        final int n = 10;
+        final int n = 1000;
         Random rnd = new Random();
-        SkipList<Integer, String> instance = new SkipList<>(0.1f, n);
+        SkipList<Integer, String> instance = new SkipList<>(0.5f, n*10);
         for (int i = 0; i < n; i++) {
             instance.add(rnd.nextInt(n*n), UUID.randomUUID().toString());
         }

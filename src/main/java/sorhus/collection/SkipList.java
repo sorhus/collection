@@ -1,6 +1,9 @@
 package sorhus.collection;
 
-import java.util.*;
+import java.util.Random;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * @author: anton.sorhus@gmail.com
@@ -12,18 +15,11 @@ public class SkipList<S extends Comparable<S>, M> {
     private int level = 1;
 
     private final Random rnd = new Random();
-    private final Node head = new Node() {
-        @Override
-        public String toString() {
-            return "Head";
-        }
-    };
 
+    private final Node head = new Node();
+
+    /* Highest score */
     private final Node nil = new Node() {
-        @Override
-        public String toString() {
-            return "Nil";
-        }
         @Override
         public int compareTo(Node that) {
             return 1;
@@ -38,7 +34,7 @@ public class SkipList<S extends Comparable<S>, M> {
 
     public void add(S score, M member) {
         Node node = new Node(score, member);
-        int randomLevel = randomLevel();
+        int randomLevel = getRandomLevel();
         Object[] update = new Object[Math.max(randomLevel, level)];
         Node next = head;
         for (int i = level - 1; i >= 0; i--) {
@@ -65,7 +61,7 @@ public class SkipList<S extends Comparable<S>, M> {
         }
     }
 
-    private int randomLevel() {
+    private int getRandomLevel() {
         int level = 1;
         while(rnd.nextDouble() < p && level < MAX_LEVEL) {
             level++;
@@ -79,11 +75,9 @@ public class SkipList<S extends Comparable<S>, M> {
 
     public M search(S score) {
         java.util.Iterator<Node> it = head.iterator();
-        while (it.hasNext()) {
-            Node next = it.next();
-            if(next == nil) {
-                break;
-            } else if(next.score.equals(score)) {
+        Node next;
+        while (it.hasNext() && (next = it.next()) != nil) {
+            if(next.score.equals(score)) {
                 return next.member;
             } else if(next.score.compareTo(score) < 0) {
                 it = next.iterator();
@@ -96,17 +90,14 @@ public class SkipList<S extends Comparable<S>, M> {
     public String toString() {
         StringBuilder result = new StringBuilder();
         for(int i = level - 1; i >= 0; i--) {
-            StringBuilder sb = new StringBuilder();
-            sb.append(head.toString()).append(" -> ");
-            Node next = head.get(i);
             int j = 0;
-            while(next.get(i) != nil) {
+            Node next = head;
+            StringBuilder sb = new StringBuilder("Head -> ");
+            while((next = next.get(i)) != nil) {
                 j++;
-                sb.append(next.toString());
-                sb.append(" -> ");
-                next = next.get(i);
+                sb.append(next.toString()).append(" -> ");
             }
-            sb.append(nil).append("\n");
+            sb.append("Nil\n");
             result.append(j).append(": ").append(sb);
         }
         return result.toString();
@@ -116,7 +107,7 @@ public class SkipList<S extends Comparable<S>, M> {
 
         M member;
         S score;
-        java.util.List<Node> refs = new java.util.LinkedList<>();;
+        List<Node> refs = new ArrayList<>();
 
         Node(S score, M member) {
             this.score = score;
@@ -137,7 +128,7 @@ public class SkipList<S extends Comparable<S>, M> {
             }
         }
 
-        java.util.Iterator<Node> iterator() {
+        Iterator<Node> iterator() {
             return refs.iterator();
         }
 
