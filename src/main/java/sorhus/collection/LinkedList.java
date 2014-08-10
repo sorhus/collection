@@ -14,7 +14,7 @@ public class LinkedList<E> implements List<E> {
         if(elem == null)
             throw new IllegalArgumentException();
         if(size() > 0) {
-            LinkedList<E> newNext = new LinkedList<E>();
+            LinkedList<E> newNext = new LinkedList<>();
             newNext.data = data;
             newNext.next = next;
             next = newNext;
@@ -78,9 +78,9 @@ public class LinkedList<E> implements List<E> {
 
     @Override
     public String toString() {
-        String prefix = size() > 0 ? size() + ":{" : "";
+        String prefix = size() > 0 ? String.format("%d:{", size()) : "";
         String seperator = next != null && next.data != null ? "," : "";
-        return data == null ? "}" : prefix + data.toString() + seperator + next.toString();
+        return data == null ? "}" : String.format("%s%s%s%s", prefix, data.toString(), seperator, next.toString());
     }
 
     @Override
@@ -102,7 +102,7 @@ public class LinkedList<E> implements List<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return new ElementIterator<E>(this);
+        return new ElementIterator<>(this);
     }
 
     class ElementIterator<E> implements Iterator<E> {

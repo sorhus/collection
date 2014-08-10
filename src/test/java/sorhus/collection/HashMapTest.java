@@ -14,17 +14,17 @@ public class HashMapTest {
     @Test
     public void testPutGet() {
         HashMap<String, String> instance = new HashMap<>();
-        instance.put("key","value");
+        instance.put("score","value");
         assertThat(instance.size(), is(1));
-        assertThat(instance.get("key"), is("value"));
+        assertThat(instance.get("score"), is("value"));
     }
 
     @Test
     public void testPutContainsKey() {
         HashMap<String, String> instance = new HashMap<>();
-        assertThat(instance.containsKey("key"), is(false));
-        instance.put("key","value");
-        assertThat(instance.containsKey("key"), is(true));
+        assertThat(instance.containsKey("score"), is(false));
+        instance.put("score","value");
+        assertThat(instance.containsKey("score"), is(true));
     }
 
     @Test
@@ -39,20 +39,20 @@ public class HashMapTest {
     @Test
     public void testPutRemove() {
         HashMap<String, String> instance = new HashMap<>();
-        instance.put("key","value").remove("key");
+        instance.put("score","value").remove("score");
         assertThat(instance.size(), is(0));
-        assertNull(instance.get("key"));
+        assertNull(instance.get("score"));
     }
 
     @Test
     public void testInsertSameKey() {
         HashMap<String, String> instance = new HashMap<>();
-        instance.put("key","value1");
+        instance.put("score","value1");
         assertThat(instance.size(), is(1));
-        assertThat(instance.get("key"), is("value1"));
-        instance.put("key", "value2");
+        assertThat(instance.get("score"), is("value1"));
+        instance.put("score", "value2");
         assertThat(instance.size(), is(1));
-        assertThat(instance.get("key"), is("value2"));
+        assertThat(instance.get("score"), is("value2"));
     }
 
     @Test
@@ -75,12 +75,12 @@ public class HashMapTest {
     @Test
     public void testClear() {
         HashMap<String, String> instance = new HashMap<>(2, 0.75);
-        instance.put("key","value");
+        instance.put("score","value");
         assertThat(instance.size(), is(1));
-        assertThat(instance.get("key"), is("value"));
+        assertThat(instance.get("score"), is("value"));
         instance.clear();
         assertThat(instance.size(), is(0));
-        assertNull(instance.get("key"));
+        assertNull(instance.get("score"));
     }
 
     @Test

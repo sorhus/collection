@@ -23,7 +23,7 @@ public class CacheBuilder<K,V> {
             case LRU:
                 return new LRUCache<K,V>(size);
             case LFU:
-                return new LFUCache(size);
+                return new LFUCache<K,V>(size);
             default:
                 throw new RuntimeException("Strategy not implemented yet!");
         }
