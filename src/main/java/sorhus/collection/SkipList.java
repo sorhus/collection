@@ -10,15 +10,15 @@ import java.util.Iterator;
  */
 public class SkipList<S extends Comparable<S>, M> {
 
+    /* variables */
+    private int level = 1;
+    private int size = 0;
+
+    /* constants */
     private final float p;
     private final int MAX_LEVEL;
-    private int level = 1;
-
     private final Random rnd = new Random();
-
     private final Node head = new Node();
-
-    /* Highest score */
     private final Node nil = new Node() {
         @Override
         public int compareTo(Node that) {
@@ -30,6 +30,10 @@ public class SkipList<S extends Comparable<S>, M> {
         this.p = p;
         this.MAX_LEVEL = (int) Math.ceil(Math.log(n) / Math.log(2));
         this.head.set(0, nil);
+    }
+
+    public int size() {
+        return size;
     }
 
     public void add(S score, M member) {
@@ -58,22 +62,15 @@ public class SkipList<S extends Comparable<S>, M> {
                 node.set(i, u.get(i));
                 u.set(i, node);
             }
+            size++;
         }
-    }
-
-    private int getRandomLevel() {
-        int level = 1;
-        while(rnd.nextDouble() < p && level < MAX_LEVEL) {
-            level++;
-        }
-        return level;
     }
 
     public boolean remove(M member) {
         return false;
     }
 
-    public M search(S score) {
+    public M get(S score) {
         java.util.Iterator<Node> it = head.iterator();
         Node next;
         while (it.hasNext() && (next = it.next()) != nil) {
@@ -101,6 +98,14 @@ public class SkipList<S extends Comparable<S>, M> {
             result.append(j).append(": ").append(sb);
         }
         return result.toString();
+    }
+
+    private int getRandomLevel() {
+        int level = 1;
+        while(rnd.nextDouble() < p && level < MAX_LEVEL) {
+            level++;
+        }
+        return level;
     }
 
     private class Node implements Comparable<Node> {
