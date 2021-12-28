@@ -1,5 +1,6 @@
 package sorhus.collection;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.List;
@@ -35,11 +36,10 @@ public class SkipListTest {
         assertNull(instance.get(8));
     }
 
-    @Test
     public void testTime() throws Exception {
         Random rnd = new Random();
         float[] ps = new float[] { 0.5f };
-        int[] ns = new int[] { 1, 10, 100, 1000, 100000 };
+        int[] ns = new int[] { 1, 10, 100, 1000, 10000 };
         int REPS = 2;
         for (int n : ns) {
             for (float p : ps) {
